@@ -611,17 +611,17 @@ return {
     end
   },
   certificate = {
-    before = function(_)
-      mesh.certificate()
+    before = function(ctx)
+      mesh.certificate(ctx)
       certificate.execute()
     end
   },
   rewrite = {
     before = function(ctx)
       ctx.KONG_REWRITE_START = get_now()
-      mesh.rewrite()
+      mesh.rewrite(ctx)
     end,
-    after = function (ctx)
+    after = function(ctx)
       ctx.KONG_REWRITE_TIME = get_now() - ctx.KONG_REWRITE_START -- time spent in Kong's rewrite_by_lua
     end
   },
