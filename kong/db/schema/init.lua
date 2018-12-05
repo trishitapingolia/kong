@@ -1616,9 +1616,19 @@ function Schema:each_field(values)
     if not item then
       return nil
     end
+
     local key = next(item)
+    if not key then
+      return nil
+    end
+
     local field = resolve_field(self, key, item[key], subschema)
+    if not field then
+      return nil
+    end
+
     i = i + 1
+
     return key, field
   end
 end
